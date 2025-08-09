@@ -7,43 +7,45 @@ void push(int data)
     if (top == SIZE-1)
     {
         printf("stack overflow\n");
-    return;
+   
     }
     else
     {   top=top+1;
         Stack[top]=data;
         
         printf("data pushed successfully\n");
-        return;
+       
     }
+     return;
 }
 void pop()
 {
     if(top == -1)
     {
         printf("stack underflow\n");
-    return;
+    
 }
     else
     {
         top=top-1;
         printf("data popped successfully\n");
-        return;
+       
     }
-    
+     return;
 }
 void peek()
 {
     if(top == -1)
     {
         printf("stack underflow\n");
-    return;
+    
 }
     else
     {
         printf("top element is %d\n",Stack[top]);
-        return;
+        
     }
+     return;
 }
 int main()
 {

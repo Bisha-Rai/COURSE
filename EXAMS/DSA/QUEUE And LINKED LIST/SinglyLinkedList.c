@@ -20,26 +20,28 @@ void insert_beginning(int data)
     newnode->next=head;
     head=newnode;
 }
-void insert_end(int data)
+void insert_end(int d)
 {
     struct node*newnode=(struct node*)malloc(sizeof(struct node));
-
-    newnode->info=data;
+    newnode->info=d;
     newnode->next=NULL;
     if(head==NULL)
     {
         head=newnode;
+        printf("inserted successfully\n");
         return;
     }
+    struct node*ptr=head;
     //to set newnode as the next element for the previous element that was at the end.
-    struct node*ptr=head; //creating a temporary pointer for loop from head till the node at the end is found.
+    //creating a temporary pointer for loop from head till the node at the end is found.
     //point for node structer since working on node.
     while(ptr->next!=NULL)
-       {
-            ptr=ptr->next;
-       }
-            ptr->next=newnode;
+    {
+        ptr=ptr->next;
+    }
+    ptr->next=newnode;
 }
+
 void insert_pos(int d,int p)
 {   
     if(p<1)
@@ -74,23 +76,21 @@ void insert_pos(int d,int p)
 }
 void display()
 {
-    struct node *ptr=head;
     if(head==NULL)
     {
         printf("list is empty\n");
         return;
     }
-   
-        printf("the list : \n");
-        while(ptr!=NULL)
-        {
-            printf("%d\t",ptr->info);
-            ptr=ptr->next;
-        }
+    printf("\nthe list:\n");
+    struct node*ptr=head;
+    while(ptr!=NULL)
+    {
+        printf("%d\t",ptr->info);
+        ptr=ptr->next;
+    }
     printf("\n");
-
-
 }
+
 void delete_beginning()
 {   
     if(head==NULL)
@@ -130,6 +130,41 @@ void delete_end()
     return;
 }
 
+void delete_pos(int p)
+{   
+    if(head==NULL)
+    {
+        printf("the list is empty\n");
+        return;
+    }
+    if(p==1)
+    {   
+        struct node*ptr=head;
+        free(ptr);
+        head=head->next;
+        printf("deleted\n");
+        return;
+    }
+    struct node*ptr=head;
+    for(int i=1;i<p-1;i++)
+    {
+        ptr=ptr->next;
+    }
+    if(ptr==NULL)
+    {
+        printf("invalid position\n");
+        return;
+    }
+    if(ptr->next==NULL)
+    {
+        delete_end();
+        return;
+    }
+    free(ptr->next);
+    ptr->next=ptr->next->next;
+    printf("deletion successful\n");
+}
+
 int main()
 {
     int c,data,pos;
@@ -142,7 +177,8 @@ int main()
     printf("enter 5 to display\n");
     printf("enter 6 to delete from beginning\n");
     printf("enter 7 to delete from end\n");
-    printf("enter 8 to exit\n");
+    printf("enter 8 to delete at specified position\n");
+    printf("enter 9 to exit\n");
     scanf("%d",&c);
     switch (c)
     {
@@ -172,7 +208,7 @@ int main()
         case 7:
             delete_end();
             break;
-        case 8:
+        case 9:
             return 0;
         case 4:
             printf("enter the position you want to insert the element is \n");
@@ -181,7 +217,11 @@ int main()
             scanf("%d",&data);
             insert_pos_alternate(data,pos);
             break;
-
+        case 8:
+            printf("enter the position you want to delete the element from\n");
+            scanf("%d",&pos);
+            delete_pos(pos);
+            break;
         default:
             printf("invalid choice \n");
             break;
@@ -225,4 +265,13 @@ void insert_pos_alternate(int d,int p)
     ptr->info=d;
 
 }
+
+
+
+
+
+
+
+
+
 

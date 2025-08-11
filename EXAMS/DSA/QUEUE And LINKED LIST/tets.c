@@ -201,4 +201,6 @@ int main() {
         }
     }
     return 0;
-}
+}//to set newnode as the next element for the previous element that was at the end.
+    //creating a temporary pointer for loop from head till the node at the end is found.
+    //point for node structer since working on node.

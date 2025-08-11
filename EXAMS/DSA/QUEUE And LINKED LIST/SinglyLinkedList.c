@@ -7,6 +7,7 @@ struct node
     struct node *next;
 };
 struct node *head = NULL;
+
 void insert_beginning(int data)
 {
     struct node*newnode=(struct node*)malloc(sizeof(struct node));
@@ -50,7 +51,7 @@ void insert_pos(int d,int p)
     struct node*ptr=head;
     for(i=1;i<p-1;i++)
     {
-        if(ptr==NULL)
+        if(ptr->next==NULL)
         {
             printf("invalid position\n");
             return;
@@ -90,6 +91,45 @@ void display()
 
 
 }
+void delete_beginning()
+{   
+    if(head==NULL)
+    {
+        printf("list is empty\n");
+        return;
+    }
+    struct node*ptr=head;
+ head=ptr->next;
+ free(ptr);
+ printf("deleted successfully\n");
+}
+
+void delete_end()
+{
+    if(head==NULL)
+    {
+        printf("list is empty\n");
+        return;
+    }
+    struct node *ptr=head;
+    if(head->next==NULL)
+    {
+        free(head);
+        head=NULL;
+        printf("deleted successfully\n");
+        return;
+    }
+    while(ptr->next->next!=NULL)//if we had done "while(ptr!=NULL)" then the pointer would run until it points at a null structure. The final node is the one that has NULL for its next not the one that has NULL as its address.and we need to delete the one which has null for next.
+    {
+        ptr=ptr->next;
+    }
+  
+    ptr->next=NULL;
+    free(ptr->next);
+    printf("deleted successfully\n");
+    return;
+}
+
 int main()
 {
     int c,data,pos;
@@ -100,8 +140,9 @@ int main()
     printf("enter 3 to insert at any position\n");
      printf("enter 4 to insert at any position alternative way\n");
     printf("enter 5 to display\n");
-    
-    printf("enter 6 to exit\n");
+    printf("enter 6 to delete from beginning\n");
+    printf("enter 7 to delete from end\n");
+    printf("enter 8 to exit\n");
     scanf("%d",&c);
     switch (c)
     {
@@ -126,6 +167,12 @@ int main()
             insert_end(data);
             break;
         case 6:
+            delete_beginning();
+            break;
+        case 7:
+            delete_end();
+            break;
+        case 8:
             return 0;
         case 4:
             printf("enter the position you want to insert the element is \n");
@@ -178,3 +225,4 @@ void insert_pos_alternate(int d,int p)
     ptr->info=d;
 
 }
+

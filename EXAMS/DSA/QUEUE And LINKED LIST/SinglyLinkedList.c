@@ -9,47 +9,52 @@ struct node *head = NULL;
 void insert_beginning(int data)
 {
     struct node*newnode=(struct node*)malloc(sizeof(struct node));
+    if(newnode==NULL)
+    {
+        printf("memory allocation failed\n");
+        return;
+    }
     newnode->info=data;
     newnode->next=head;
     head=newnode;
-    return;
 }
-void insert_end(int d)
-{
-    struct node*newnode=(struct node*)malloc(sizeof(struct node));
-    newnode->info=d;
-    newnode->next=NULL;
-    if(head==NULL)
-    {   
-
-        head=newnode;
+void insert_end(int data) {
+    struct node *newnode = (struct node *)malloc(sizeof(struct node));
+    if (newnode == NULL) 
+    {
+        printf("Memory allocation failed\n");
         return;
     }
-    struct node *ptr=head;
-    while(ptr->next!=NULL);
-    {
-        ptr=ptr->next;
-        ptr->next=newnode;
+    newnode->info = data;
+    newnode->next = NULL;
+    if (head == NULL) {
+        head = newnode;
+        return;
     }
+    struct node *ptr = head;
+    while (ptr->next != NULL)
+        ptr = ptr->next;
+    ptr->next = newnode;
 }
+
 void display()
 {
     struct node *ptr=head;
     if(head==NULL)
     {
         printf("list is empty\n");
+        return;
     }
-    else
-    {
+   
         printf("the list : \n");
-        while(ptr->next!=NULL)
+        while(ptr!=NULL)
         {
             printf("%d\t",ptr->info);
             ptr=ptr->next;
         }
     printf("\n");
-}
-return;
+
+
 }
 int main()
 {

@@ -36,12 +36,10 @@ void dequeue()
     }
     if(front==rear)
     {
-         struct node*ptr=front;
-         struct node*ptr2=rear;
+        
          front=NULL;
          rear=NULL;
-         free(ptr);
-         free(ptr2);
+        
          printf("dequeued\n");
          return;
     }

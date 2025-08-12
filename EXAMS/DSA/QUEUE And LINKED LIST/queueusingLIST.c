@@ -14,6 +14,7 @@ void enqueue()
     scanf("%d",&d);
     struct node*newnode=(struct node*)malloc(sizeof(struct node));
     newnode->info=d;
+     
     if(front==NULL&&rear==NULL)
     {
     newnode->next=NULL;
@@ -23,7 +24,7 @@ void enqueue()
     return;
     }
     rear->next=newnode;
-    newnode->next=NULL;
+   newnode->next=NULL;
     rear=newnode;
     printf("enqueued!!\n");
 }
@@ -35,11 +36,11 @@ void dequeue()
         return;
     }
     if(front==rear)
-    {
+    {struct node*ptr=front;
         
          front=NULL;
          rear=NULL;
-        
+        free(ptr);
          printf("dequeued\n");
          return;
     }
@@ -68,7 +69,7 @@ int main()
     int c;
     while(1)
     {   
-        printf("enter 1 to enqueue\nenter 2 to dequeue\nenter 3 to display\nenter 4 to exit\n");
+        printf("enter 1 to enqueue:\nenter 2 to dequeue\nenter 3 to display\nenter 4 to exit:\n");
         scanf("%d",&c);
         switch (c)
         {

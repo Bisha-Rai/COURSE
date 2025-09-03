@@ -1,6 +1,6 @@
 #include<stdio.h>
 long int fact(int n)
-{
+{   
     if((n==0)||(n==1))  
     return 1;
     else 
@@ -12,7 +12,13 @@ int main()
     long int res;
     printf("enter the number whose factorial is to be print: \n");
     scanf("%d",&n);
+    if(n<0)
+    {
+        printf("can,t compute\n");
+        return 0;
+    }
     res=fact(n);
+    
     printf("the factorial of %d is %d\n",n,res);
     return 0;
 }

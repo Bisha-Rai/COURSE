@@ -3,10 +3,7 @@ using namespace std;
 class employee
 {
     public:
-    virtual void showdata()
-    {
-        cout<<"the earning is ";
-    }
+    virtual void showdata()=0;
 };
 class parttimer: public employee
 {
